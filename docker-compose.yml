@@ -2,9 +2,13 @@ version: "2"
 services:
   client:
     build:
+      # Caminho do arquivo
       context: ./client
+      # Nome do arquivo
       dockerfile: Dockerfile
     restart: always
+    # Nome do container
+    container_name: app_mygooddoctor_client_1
     ports:
       - "3000:3000"
     volumes:
@@ -13,12 +17,14 @@ services:
     links:
       - api
     networks:
+      # Setando a comunicacao entre os containers
       - webapp-network
   api:
     build:
       context: ./api
       dockerfile: Dockerfile
     restart: always
+    container_name: app_mygooddoctor_api_1
     ports:
       - "9000:9000"
     volumes:
@@ -31,7 +37,7 @@ services:
   mongodb:
     image: mongo:4.0
     restart: always
-    container_name: mongodb
+    container_name: app_mygooddoctor_db_1
     volumes:
       - ./data-node:/data/db
     ports:
