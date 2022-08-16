@@ -1,5 +1,5 @@
 # versao mais leve do Node como imagem pai
-FROM mhart/alpine-node:latest
+FROM node:18
 # Definindo o diretorio de trabalho para /client
 WORKDIR /api
 # copiando package.json para o container em /client

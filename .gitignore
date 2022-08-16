@@ -270,4 +270,7 @@ fabric.properties
 # WebStorm’s project specific settings files
 .idea/
 
+# Volume for mongodb
+/data-node/
+
 # End of https://www.toptal.com/developers/gitignore/api/node,react,webstorm
