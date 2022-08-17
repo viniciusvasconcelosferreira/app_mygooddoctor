@@ -272,5 +272,6 @@ fabric.properties
 
 # Volume for mongodb
 /data-node/
+/data/
 
 # End of https://www.toptal.com/developers/gitignore/api/node,react,webstorm
