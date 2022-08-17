@@ -11,4 +11,4 @@ COPY . /api/
 # Expondo a porta 3000 para acesso externo
 EXPOSE 80
 # Executando o aplicativo quando o container inciar
-CMD ["npm", "start"]
+CMD ["npm", "run","startd"]
