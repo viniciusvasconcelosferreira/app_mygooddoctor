@@ -61,12 +61,15 @@ services:
       - mongodb_network
     ports:
       - 27017:27017
+    # verificacao de integridade do container fazendo execucao do banco atraves do ip do servidor
     healthcheck:
-      # TODO: verificar execucao usando ip do container
       # Configurando usando o ip do servidor
       test: echo 'db.runCommand("ping").ok' | mongo 172.24.33.54:27017/test --quiet
+      # intervalo entre cada teste
       interval: 30s
+      # limite de duracao da tentativa
       timeout: 10s
+      # numero de tentativas para o teste
       retries: 3
     restart: unless-stopped
 
@@ -115,5 +118,6 @@ networks:
   mongodb_network:
     labels:
       name: mongodb_network
+  # agregacao usando sistema de ponte
   webapp-network:
     driver: bridge
