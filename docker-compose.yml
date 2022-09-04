@@ -2,7 +2,7 @@
 # Quais opções estão disponíveis no arquivo de composição
 # A versão mínima do mecanismo Docker compatível
 
-version: "3.8"
+version: "3.3"
 # Declaracao dos servicos
 services:
 
