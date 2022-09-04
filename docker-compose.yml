@@ -7,10 +7,10 @@ version: "3.8"
 services:
 
   # Frontend
-  client:
+  cliente:
     build:
       # Caminho do arquivo
-      context: ./client
+      context: ./cliente
       # Nome do arquivo
       dockerfile: Dockerfile
     restart: always
@@ -19,8 +19,8 @@ services:
       - "3000:3000"
     # volumes de montagem de ligação
     volumes:
-      - ./client:/client
-      - /client/node_modules
+      - ./cliente:/cliente
+      - /cliente/node_modules
     links:
       - api
     networks:

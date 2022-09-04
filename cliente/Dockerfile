@@ -5,7 +5,7 @@ WORKDIR /cliente
 # copiando package.json para o container em /cliente
 COPY package*.json /cliente/
 # instalando as dependencias
-RUN npm install
+RUN npm install --legacy-peer-deps
 # Copiando o conteudo do diretorio atual para o container em /cliente
 COPY . /cliente/
 # Expondo a porta 3000 para acesso externo
