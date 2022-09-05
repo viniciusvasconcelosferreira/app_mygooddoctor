@@ -9,6 +9,8 @@ class Appointment extends Model
 {
     use HasFactory;
 
+    protected $primaryKey = 'id';
+
     protected $fillable = [
         'date',
         'type',

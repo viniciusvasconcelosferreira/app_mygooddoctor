@@ -10,13 +10,11 @@ class Patient extends Model
     use HasFactory;
 
     protected $fillable = [
-        'name',
         'address',
         'cpf',
         'rg',
         'phone',
         'mobile_phone',
-        'email',
     ];
 
     public function doctor()
@@ -27,5 +25,10 @@ class Patient extends Model
     public function appointments()
     {
         return $this->hasMany(Appointment::class);
+    }
+
+    public function user()
+    {
+        return $this->morphOne(User::class, 'profile');
     }
 }

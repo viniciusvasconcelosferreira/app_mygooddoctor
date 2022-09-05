@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\Specialty;
 use Illuminate\Database\Seeder;
 
 class SpecialtySeeder extends Seeder
@@ -13,6 +14,6 @@ class SpecialtySeeder extends Seeder
      */
     public function run()
     {
-        //
+        Specialty::factory(40)->create();
     }
 }

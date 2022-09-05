@@ -14,7 +14,11 @@ class PatientFactory extends Factory
     public function definition()
     {
         return [
-            //
+            'address' => $this->faker->address(),
+            'cpf' => $this->faker->numerify('###.###.###-##'),
+            'rg' => $this->faker->numerify('#######'),
+            'phone' => $this->faker->phoneNumber(),
+            'mobile_phone' => $this->faker->phoneNumber(),
         ];
     }
 }

@@ -9,23 +9,27 @@ class Doctor extends Model
 {
     use HasFactory;
 
-    protected $primaryKey = 'crm';
+    protected $table = 'doctors';
 
-    protected $keyType = 'integer';
+    protected $primaryKey = 'crm';
 
     public $incrementing = false;
 
+    protected $keyType = 'string';
+
     protected $fillable = [
-        'name',
+        'crm',
+        'cpf',
+        'rg',
         'gender',
         'education',
-        'email',
+        'address',
         'phone',
         'mobile_phone',
-        'department'
+        'department',
     ];
 
-    public function specialties()
+    public function specialty()
     {
         return $this->hasMany(Specialty::class);
     }
@@ -38,5 +42,10 @@ class Doctor extends Model
     public function appointments()
     {
         return $this->hasMany(Appointment::class);
+    }
+
+    public function user()
+    {
+        return $this->morphOne(User::class, 'profile');
     }
 }

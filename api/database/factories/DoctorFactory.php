@@ -13,8 +13,19 @@ class DoctorFactory extends Factory
      */
     public function definition()
     {
+        $gender = $this->faker->randomElement(['Male', 'Female', 'Non binary']);
+        $brazilian_states = $this->faker->randomElement(['AC', 'AL', 'AP', 'AM', 'BA', 'CE', 'DF', 'ES', 'GO', 'MA', 'MT', 'MS', 'MG', 'PA', 'PB', 'PR', 'PE', 'PI', 'RJ', 'RN', 'RS', 'RO', 'RR', 'SC', 'SP', 'SE', 'TO']);
+
         return [
-            //
+            'crm' => $this->faker->numerify('CRM/' . $brazilian_states . ' ######'),
+            'cpf' => $this->faker->numerify('###.###.###-##'),
+            'rg' => $this->faker->numerify('#######'),
+            'gender' => $gender,
+            'education' => $this->faker->sentence(),
+            'address' => $this->faker->address(),
+            'phone' => $this->faker->phoneNumber(),
+            'mobile_phone' => $this->faker->phoneNumber(),
+            'department' => $this->faker->sentence(),
         ];
     }
 }

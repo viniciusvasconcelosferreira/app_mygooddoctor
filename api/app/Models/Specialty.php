@@ -9,12 +9,16 @@ class Specialty extends Model
 {
     use HasFactory;
 
+    protected $table = 'specialties';
+
+    protected $primaryKey = 'id';
+
     protected $fillable = [
         'name',
         'description',
     ];
 
-    public function doctor()
+    public function doctors()
     {
         return $this->belongsTo(Doctor::class);
     }

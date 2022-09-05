@@ -23,6 +23,8 @@ class User extends Authenticatable
         'password',
     ];
 
+    protected $with = ['profile'];
+
     /**
      * The attributes that should be hidden for serialization.
      *
@@ -41,4 +43,19 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public function profile()
+    {
+        return $this->morphTo();
+    }
+
+    public function getHasDoctorProfileAttribute()
+    {
+        return $this->profile_type == Doctor::class;
+    }
+
+    public function getHasPatientProfileAttribute()
+    {
+        return $this->profile_type == Patient::class;
+    }
 }
