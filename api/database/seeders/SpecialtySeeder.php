@@ -14,6 +14,6 @@ class SpecialtySeeder extends Seeder
      */
     public function run()
     {
-        Specialty::factory(40)->create();
+        //
     }
 }

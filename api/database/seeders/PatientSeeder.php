@@ -2,6 +2,8 @@
 
 namespace Database\Seeders;
 
+use App\Models\Doctor;
+use App\Models\Patient;
 use Illuminate\Database\Seeder;
 
 class PatientSeeder extends Seeder
@@ -13,6 +15,13 @@ class PatientSeeder extends Seeder
      */
     public function run()
     {
-        //
+        $doctors = Doctor::all();
+
+        foreach ($doctors as $doctor) {
+            Patient::factory()->create([
+                'doctor_crm' => $doctor->crm
+            ]);
+        }
+
     }
 }
