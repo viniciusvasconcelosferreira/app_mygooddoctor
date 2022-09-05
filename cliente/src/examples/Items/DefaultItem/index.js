@@ -28,11 +28,16 @@ import MDTypography from "components/MDTypography";
 // custom styles for the DefaultItem
 import defaultItemIconBox from "examples/Items/DefaultItem/styles";
 
-const DefaultItem = forwardRef(({ color, icon, title, description, ...rest }, ref) => (
+const DefaultItem = forwardRef(({ color, icon, title, description, image, ...rest }, ref) => (
   <MDBox {...rest} ref={ref} display="flex" alignItems="center">
-    <MDBox sx={(theme) => defaultItemIconBox(theme, { color })}>
-      <Icon>{icon}</Icon>
-    </MDBox>
+    {image ? (
+      <img src={image} style={{ width: "40px" }} alt="logo" />
+    ) : (
+      <MDBox sx={(theme) => defaultItemIconBox(theme, { color })}>
+        <Icon>{icon}</Icon>
+      </MDBox>
+    )}
+
     <MDBox ml={2} mt={0.5} lineHeight={1.4}>
       <MDTypography display="block" variant="button" fontWeight="medium">
         {title}

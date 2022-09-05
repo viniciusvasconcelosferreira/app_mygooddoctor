@@ -48,7 +48,7 @@ function Calendar() {
               () => (
                 <EventCalendar
                   initialView="dayGridMonth"
-                  initialDate="2021-08-10"
+                  initialDate={new Date().toISOString().split("T")[0]}
                   events={calendarEventsData}
                   selectable
                   editable

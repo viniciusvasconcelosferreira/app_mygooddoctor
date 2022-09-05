@@ -37,6 +37,7 @@ Coded by www.creative-tim.com
 
 // Material Dashboard 2 PRO React layouts
 import Analytics from "layouts/dashboards/analytics";
+import Pacientes from "layouts/dashboards/pacientes";
 import Sales from "layouts/dashboards/sales";
 import ProfileOverview from "layouts/pages/profile/profile-overview";
 import AllProjects from "layouts/pages/profile/all-projects";
@@ -108,6 +109,12 @@ const routes = [
     key: "dashboards",
     icon: <Icon fontSize="medium">dashboard</Icon>,
     collapse: [
+      {
+        name: "pacientes",
+        key: "pacientes",
+        route: "/dashboards/pacientes",
+        component: <Pacientes />,
+      },
       {
         name: "paciente1",
         key: "analytics",
