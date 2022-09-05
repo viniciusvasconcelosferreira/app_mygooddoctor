@@ -16,7 +16,7 @@ services:
     restart: always
     # Porta local para porta interna -> local:interna
     ports:
-      - "3000:3000"
+      - "3001:3000"
     # volumes de montagem de ligação
     volumes:
       - ./cliente:/cliente
@@ -64,7 +64,7 @@ services:
     # verificacao de integridade do container fazendo execucao do banco atraves do ip do servidor
     healthcheck:
       # Configurando usando o ip do servidor
-      test: echo 'db.runCommand("ping").ok' | mongo 172.24.33.54:27017/test --quiet
+      test: echo 'db.runCommand("ping").ok' | mongo 192.168.0.215:27017/test --quiet
       # intervalo entre cada teste
       interval: 30s
       # limite de duracao da tentativa
@@ -103,7 +103,7 @@ services:
     healthcheck:
       # mongodb://myUserId:myPassword@mongodb/myDatabase?directConnection=true
       # Configurando usando o ip do servidor
-      test: wget --quiet --tries=3 --spider http://admin:admin123@172.24.33.54:8081 || exit 1
+      test: wget --quiet --tries=3 --spider http://admin:admin123@192.168.0.215:8081 || exit 1
       interval: 30s
       timeout: 10s
       retries: 3

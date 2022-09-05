@@ -184,10 +184,9 @@ function Analytics() {
               <MDBox mt={3}>
                 <BookingCard
                   image={booking1}
-                  title="Cozy 5 Stars Apartment"
-                  description='The place is close to Barceloneta Beach and bus stop just 2 min by walk and near to "Naviglio" where you can enjoy the main night life in Barcelona.'
-                  price="$899/night"
-                  location="Barcelona, Spain"
+                  title="Receitas já prescritas para o paciente"
+                  description="Acesse o histórico de receitas"
+                  price="6 receitas já prescritas"
                   action={actionButtons}
                 />
               </MDBox>
@@ -196,22 +195,9 @@ function Analytics() {
               <MDBox mt={3}>
                 <BookingCard
                   image={booking2}
-                  title="Office Studio"
-                  description='The place is close to Metro Station and bus stop just 2 min by walk and near to "Naviglio" where you can enjoy the night life in London, UK.'
-                  price="$1.119/night"
-                  location="London, UK"
-                  action={actionButtons}
-                />
-              </MDBox>
-            </Grid>
-            <Grid item xs={12} md={6} lg={4}>
-              <MDBox mt={3}>
-                <BookingCard
-                  image={booking3}
-                  title="Beautiful Castle"
-                  description='The place is close to Metro Station and bus stop just 2 min by walk and near to "Naviglio" where you can enjoy the main night life in Milan.'
-                  price="$459/night"
-                  location="Milan, Italy"
+                  title="Exames"
+                  description="Acesse todos os resultados dos exames clínicos do paciente"
+                  price="4 exames já enviados"
                   action={actionButtons}
                 />
               </MDBox>

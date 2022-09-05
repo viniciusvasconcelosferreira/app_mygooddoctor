@@ -10,7 +10,7 @@ router.get("/", function (req, res, next) {
 
 // Conectando com o mongoDB
 mongoose.connect(
-    "mongodb://172.24.33.54:27017/test?directConnection=true",
+    "mongodb://192.168.0.215:27017/test?directConnection=true",
     {
         useNewUrlParser: true
     }

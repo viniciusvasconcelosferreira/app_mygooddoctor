@@ -34,7 +34,7 @@ import salesTableData from "layouts/dashboards/analytics/components/SalesByCount
 
 function SalesByCountry() {
   return (
-    <Card sx={{ width: "100%" }}>
+    <Card sx={{ width: "100%", display: "none" }}>
       <MDBox display="flex">
         <MDBox
           display="flex"

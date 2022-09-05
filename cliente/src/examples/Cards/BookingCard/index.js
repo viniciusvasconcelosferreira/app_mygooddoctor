@@ -29,9 +29,7 @@ function BookingCard({ image, title, description, price, location, action }) {
   return (
     <Card
       sx={{
-        "&:hover .card-header": {
-          transform: action && "translate3d(0, -50px, 0)",
-        },
+        "&:hover .card-header": {},
       }}
     >
       <MDBox
@@ -93,14 +91,6 @@ function BookingCard({ image, title, description, price, location, action }) {
         <MDTypography variant="body2" fontWeight="regular" color="text">
           {price}
         </MDTypography>
-        <MDBox color="text" display="flex" alignItems="center">
-          <Icon color="inherit" sx={{ m: 0.5 }}>
-            place
-          </Icon>
-          <MDTypography variant="button" fontWeight="light" color="text">
-            {location}
-          </MDTypography>
-        </MDBox>
       </MDBox>
     </Card>
   );

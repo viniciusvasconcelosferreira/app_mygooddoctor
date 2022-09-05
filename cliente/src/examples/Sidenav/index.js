@@ -48,6 +48,8 @@ import {
   setWhiteSidenav,
 } from "context";
 
+import logo from "assets/images/small-logos/Group 16.png";
+
 function Sidenav({ color, brand, brandName, routes, ...rest }) {
   const [openCollapse, setOpenCollapse] = useState(false);
   const [openNestedCollapse, setOpenNestedCollapse] = useState(false);
@@ -263,7 +265,7 @@ function Sidenav({ color, brand, brandName, routes, ...rest }) {
           </MDTypography>
         </MDBox>
         <MDBox component={NavLink} to="/" display="flex" alignItems="center">
-          {brand && <MDBox component="img" src={brand} alt="Brand" width="2rem" />}
+          {brand && <MDBox component="img" src={logo} alt="Brand" width="2rem" />}
           <MDBox
             width={!brandName && "100%"}
             sx={(theme) => sidenavLogoLabel(theme, { miniSidenav })}

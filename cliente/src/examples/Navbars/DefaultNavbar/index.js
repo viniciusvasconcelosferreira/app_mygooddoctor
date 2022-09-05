@@ -49,7 +49,7 @@ import { useMaterialUIController } from "context";
 function DefaultNavbar({ routes, brand, transparent, light, action }) {
   const [controller] = useMaterialUIController();
   const { darkMode } = controller;
-
+  console.log("testeeeeeeeeeeeeeeeeeeeeeeeee");
   const [dropdown, setDropdown] = useState("");
   const [dropdownEl, setDropdownEl] = useState("");
   const [dropdownName, setDropdownName] = useState("");

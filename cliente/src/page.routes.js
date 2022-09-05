@@ -45,11 +45,11 @@ const pageRoutes = [
         collapse: [
           {
             name: "analytics",
-            route: "/dashboards/analytics",
+            route: "/dashboards/1",
           },
           {
             name: "sales",
-            route: "/dashboards/sales",
+            route: "/dashboards/2",
           },
         ],
       },
@@ -121,6 +121,11 @@ const pageRoutes = [
             route: "/pages/profile/all-projects",
           },
         ],
+      },
+      {
+        name: "calendar",
+        route: "/applications/calendar",
+        icon: "event",
       },
     ],
   },
