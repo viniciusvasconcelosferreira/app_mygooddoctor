@@ -25,26 +25,41 @@
                 </div>
             </div>
             <div class="card-body">
-                <form role="form" class="text-start">
-                    <div class="input-group input-group-outline my-3">
-                        <label class="form-label">Email</label>
-                        <input type="email" class="form-control">
+                <form method="POST" role="form" class="text-start" action="{{route('login')}}">
+                    @csrf
+                    <div
+                        class="input-group input-group-outline @error('email') is-invalid @enderror my-3">
+                        <label for="email" class="form-label">Email</label>
+                        <input id="email" type="email" class="form-control" value="{{ old('email') }}" required
+                               autocomplete="email" autofocus name="email">
                     </div>
-                    <div class="input-group input-group-outline mb-3">
-                        <label class="form-label">Password</label>
-                        <input type="password" class="form-control">
+                    @error('email')
+                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                    @enderror
+                    <div class="input-group input-group-outline @error('password') is-invalid @enderror mb-3">
+                        <label for="password" class="form-label">Password</label>
+                        <input id="password" type="password" class="form-control" required
+                               autocomplete="current-password" name="password">
                     </div>
+                    @error('password')
+                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                    @enderror
                     <div class="form-check form-switch d-flex align-items-center mb-3">
-                        <input class="form-check-input" type="checkbox" id="rememberMe" checked>
-                        <label class="form-check-label mb-0 ms-3" for="rememberMe">Remember me</label>
+                        <input class="form-check-input" type="checkbox"
+                               id="remember" {{ old('remember') ? 'checked' : '' }} name="remember">
+                        <label class="form-check-label mb-0 ms-3" for="remember">Remember me</label>
                     </div>
                     <div class="text-center">
-                        <button type="button" class="btn bg-gradient-primary w-100 my-4 mb-2">Sign in
+                        <button type="submit" class="btn bg-gradient-primary w-100 my-4 mb-2">Sign in
                         </button>
                     </div>
                     <p class="mt-4 text-sm text-center">
                         Don't have an account?
-                        <a href="../../../pages/authentication/signup/illustration.html"
+                        <a href="{{route('register')}}"
                            class="text-primary text-gradient font-weight-bold">Sign up</a>
                     </p>
                 </form>

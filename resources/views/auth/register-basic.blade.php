@@ -32,32 +32,48 @@
                 </div>
             </div>
             <div class="card-body">
-                <form role="form">
-                    <div class="input-group input-group-dynamic mb-3">
-                        <label class="form-label">Name</label>
-                        <input type="text" class="form-control" aria-label="Name">
+                <form method="POST" role="form" action="{{route('register')}}">
+                    @csrf
+                    <div class="input-group input-group-dynamic @error('name') is-invalid @enderror mb-3">
+                        <label for="name" class="form-label">Name</label>
+                        <input type="text" class="form-control" aria-label="Name" name="name" required
+                               autocomplete="name" autofocus value="{{ old('name') }}">
                     </div>
-                    <div class="input-group input-group-dynamic mb-3">
-                        <label class="form-label">Email</label>
-                        <input type="email" class="form-control" aria-label="Email">
+                    @error('name')
+                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                    @enderror
+                    <div class="input-group input-group-dynamic @error('email') is-invalid @enderror mb-3">
+                        <label for="email" class="form-label">Email</label>
+                        <input id="email" type="email" class="form-control" aria-label="Email" name="email"
+                               value="{{ old('email') }}" required autocomplete="email" autofocus>
                     </div>
-                    <div class="input-group input-group-dynamic mb-3">
-                        <label class="form-label">Password</label>
-                        <input type="password" class="form-control" aria-label="Password">
+                    @error('email')
+                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                    @enderror
+                    <div class="input-group input-group-dynamic @error('password') is-invalid @enderror mb-3">
+                        <label for="password" class="form-label">Password</label>
+                        <input type="password" class="form-control" aria-label="Password" name="password" required
+                               autocomplete="new-password" autofocus>
                     </div>
-                    <div class="form-check text-start ps-0">
-                        <input class="form-check-input bg-dark border-dark" type="checkbox" value=""
-                               id="flexCheckDefault" checked>
-                        <label class="form-check-label" for="flexCheckDefault">
-                            I agree the <a href="javascript:;" class="text-dark font-weight-bolder">Terms
-                                and Conditions</a>
-                        </label>
+                    @error('password')
+                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                    @enderror
+                    <div class="input-group input-group-dynamic mb-3">
+                        <label for="password-confirm" class="form-label">Confirm Password</label>
+                        <input id="password-confirm" type="password" class="form-control" aria-label="Password"
+                               name="password_confirmation" required autocomplete="new-password" autofocus>
                     </div>
                     <div class="text-center">
-                        <button type="button" class="btn bg-gradient-dark w-100 my-4 mb-2">Sign up
+                        <button type="submit" class="btn bg-gradient-dark w-100 my-4 mb-2">Sign up
                         </button>
                     </div>
-                    <p class="text-sm mt-3 mb-0">Already have an account? <a href="javascript:;"
+                    <p class="text-sm mt-3 mb-0">Already have an account? <a href="{{route('login')}}"
                                                                              class="text-dark font-weight-bolder">Sign
                             in</a></p>
                 </form>
