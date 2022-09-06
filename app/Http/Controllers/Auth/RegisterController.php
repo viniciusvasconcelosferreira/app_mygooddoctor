@@ -74,7 +74,7 @@ class RegisterController extends Controller
     /**
      * > This function returns the view for the registration form
      *
-     * @return The view 'auth.register-basic'
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
      */
     public function showRegistrationForm()
     {

@@ -41,7 +41,7 @@ class LoginController extends Controller
     /**
      * > This function returns the view `auth.login-basic`
      *
-     * @return A view
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
      */
     public function showLoginForm()
     {
