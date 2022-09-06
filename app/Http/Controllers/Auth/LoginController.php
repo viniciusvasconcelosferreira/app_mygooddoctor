@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Http\Request;
 
 class LoginController extends Controller
 {
@@ -49,6 +50,11 @@ class LoginController extends Controller
         return view('auth.login-basic');
     }
 
+    /**
+     * It logs the user out and redirects them to the login page
+     *
+     * @return \Illuminate\Http\RedirectResponse user is being logged out and redirected to the login page.
+     */
     public function logout()
     {
         Auth::logout();

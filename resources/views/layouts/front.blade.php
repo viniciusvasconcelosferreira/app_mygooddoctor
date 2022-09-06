@@ -1072,15 +1072,16 @@
     </div>
 </main>
 <!--   Core JS Files   -->
-<script src="{{'js/core/popper.min.js'}}"></script>
-<script src="{{'js/core/bootstrap.min.js'}}"></script>
-<script src="{{'js/plugins/perfect-scrollbar.min.js'}}"></script>
-<script src="{{'js/plugins/smooth-scrollbar.min.js'}}"></script>
+<script src="{{asset('js/core/popper.min.js')}}"></script>
+<script src="{{asset('js/core/bootstrap.min.js')}}"></script>
+<script src="{{asset('js/plugins/perfect-scrollbar.min.js')}}"></script>
+<script src="{{asset('js/plugins/smooth-scrollbar.min.js')}}"></script>
 <!-- Kanban scripts -->
-<script src="{{'js/plugins/dragula/dragula.min.js'}}"></script>
-<script src="{{'js/plugins/jkanban/jkanban.js'}}"></script>
-<script src="{{'js/plugins/chartjs.min.js'}}"></script>
-<script src="{{'js/plugins/world.js'}}"></script>
+<script src="{{asset('js/plugins/dragula/dragula.min.js')}}"></script>
+<script src="{{asset('js/plugins/jkanban/jkanban.js')}}"></script>
+<script src="{{asset('js/plugins/chartjs.min.js')}}"></script>
+<script src="{{asset('js/plugins/world.js')}}"></script>
+<script src="{{asset('js/plugins/sweetalert.min.js')}}"></script>
 {{--<script>--}}
 {{--    var ctx = document.getElementById("chart-bars").getContext("2d");--}}
 
