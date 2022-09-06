@@ -35,6 +35,26 @@ class UserFactory extends Factory
         ];
     }
 
+    public function forDoctor()
+    {
+        return $this->state(function (array $attributes) {
+            return [
+                'profile_type' => Doctor::class,
+                'profile_id' => Doctor::all()->random()->crm
+            ];
+        });
+    }
+
+    public function forPatient()
+    {
+        return $this->state(function (array $attributes) {
+            return [
+                'profile_type' => Patient::class,
+                'profile_id' => Patient::all()->random()->id
+            ];
+        });
+    }
+
     /**
      * Indicate that the model's email address should be unverified.
      *

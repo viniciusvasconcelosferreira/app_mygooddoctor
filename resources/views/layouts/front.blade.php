@@ -46,7 +46,10 @@
                 <a data-bs-toggle="collapse" href="#ProfileNav" class="nav-link text-white" aria-controls="ProfileNav"
                    role="button" aria-expanded="false">
                     <img src="{{asset('img/team-3.jpg')}}" class="avatar">
-                    <span class="nav-link-text ms-2 ps-1">Brooklyn Alice</span>
+                    <span class="nav-link-text ms-2 ps-1"
+                          style="text-overflow: ellipsis;  width: 150px;
+  overflow: hidden;
+  white-space: nowrap;">{{auth()->user()->name}}</span>
                 </a>
                 <div class="collapse" id="ProfileNav" style="">
                     <ul class="nav ">
@@ -63,9 +66,13 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-white " href="../../pages/authentication/signin/basic.html">
+                            <a class="nav-link text-white " href="{{ route('logout') }}"
+                               onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
                                 <span class="sidenav-mini-icon"> L </span>
                                 <span class="sidenav-normal  ms-3  ps-1"> Logout </span>
+                                <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                                    @csrf
+                                </form>
                             </a>
                         </li>
                     </ul>
