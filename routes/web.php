@@ -14,10 +14,14 @@ use Illuminate\Support\Facades\Auth;
 |
 */
 
+Route::get('/', function () {
+    return view('auth.login-basic');
+});
+
 Route::group(['middleware' => ['auth']], function () {
     Route::get('/dashboard', function () {
         return view('test');
-    });
+    })->name('admin.dashboard');
 });
 
 Auth::routes();
