@@ -64,15 +64,15 @@
                                 </td>
                                 <td class="text-sm">
                                     <a href="javascript:;" data-bs-toggle="tooltip"
-                                       data-bs-original-title="Preview product">
+                                       data-bs-original-title="Visualizar receita">
                                         <i class="material-icons text-secondary position-relative text-lg">visibility</i>
                                     </a>
                                     <a href="javascript:;" class="mx-3" data-bs-toggle="tooltip"
-                                       data-bs-original-title="Edit product">
+                                       data-bs-original-title="Editar receita">
                                         <i class="material-icons text-secondary position-relative text-lg">drive_file_rename_outline</i>
                                     </a>
                                     <a href="javascript:;" data-bs-toggle="tooltip"
-                                       data-bs-original-title="Delete product">
+                                       data-bs-original-title="Excluir receita">
                                         <i class="material-icons text-secondary position-relative text-lg">delete</i>
                                     </a>
                                 </td>
