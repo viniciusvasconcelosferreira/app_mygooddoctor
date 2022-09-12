@@ -17,9 +17,10 @@ class CreatePatientsTable extends Migration
             $table->id();
             $table->string('address');
             $table->string('cpf');
-            $table->string('rg');
+            $table->string('rg')->nullable();
             $table->string('phone');
-            $table->string('mobile_phone');
+            $table->string('mobile_phone')->nullable();
+            $table->string('blood_type');
             $table->string('doctor_crm');
             $table->foreign('doctor_crm')->references('crm')->on('doctors');
             $table->timestamps();

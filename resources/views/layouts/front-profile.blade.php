@@ -24,22 +24,17 @@
     @yield('stylesheets')
 </head>
 
-<body class="g-sidenav-show bg-gray-100">
-
+<body class="g-sidenav-show bg-gray-200">
 @include('sections.aside')
-<main class="main-content position-relative max-height-vh-100 h-100 border-radius-lg ">
+<div class="main-content position-relative max-height-vh-100 h-100">
     <!-- Navbar -->
     @include('sections.navbar')
     <!-- End Navbar -->
-    <div class="container-fluid py-4">
-        <div class="row">
-            <div class="col-lg-12 position-relative z-index-2">
-                @yield('content')
-            </div>
-        </div>
-        @include('sections.footer')
+    <div class="container-fluid px-2 px-md-4">
+        @yield('content')
     </div>
-</main>
+    @include('sections.footer')
+</div>
 <!--   Core JS Files   -->
 <script src="{{asset('js/core/popper.min.js')}}"></script>
 <script src="{{asset('js/core/bootstrap.min.js')}}"></script>

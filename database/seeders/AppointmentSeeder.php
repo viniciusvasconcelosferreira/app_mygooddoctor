@@ -21,15 +21,9 @@ class AppointmentSeeder extends Seeder
 
         foreach ($doctors as $doctor) {
             Appointment::factory()->create([
-                'doctor_crm' => $doctor->crm
+                'doctor_crm' => $doctor->crm,
+                'patient_id' => $patients->random()->id
             ]);
         }
-
-        foreach ($patients as $patient) {
-            Appointment::where('patient_id', null)->update([
-                'patient_id' => $patient->id
-            ]);
-        }
-
     }
 }

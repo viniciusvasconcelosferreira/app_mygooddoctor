@@ -18,10 +18,23 @@ Route::get('/', function () {
     return view('auth.login-basic');
 });
 
-Route::group(['middleware' => ['auth']], function () {
-    Route::get('/home', function () {
-        return view('index');
-    })->name('admin.home');
+Route::namespace('App\Http\Controllers')->group(function () {
+    Route::group(['middleware' => ['auth']], function () {
+
+        Route::prefix('dashboards')->name('dashboards.')->group(function () {
+            Route::get('/home', function () {
+                return view('dashboards.index');
+            })->name('home');
+        });
+
+        Route::prefix('profile')->name('profile.')->group(function () {
+            Route::get('/overview', 'DoctorController@profile_overview')->name('overview');
+        });
+
+        Route::prefix('scheduling')->name('scheduling.')->group(function () {
+
+        });
+    });
 });
 
 Auth::routes();

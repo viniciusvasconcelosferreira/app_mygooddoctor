@@ -4,9 +4,11 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
+use Flasher\Toastr\Prime\ToastrFactory;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
+use Flasher\Toastr\Laravel\Facade\Toastr;
 
 class LoginController extends Controller
 {
@@ -22,6 +24,12 @@ class LoginController extends Controller
     */
 
     use AuthenticatesUsers;
+
+    protected function authenticated(Request $request, $user)
+    {
+        Toastr::addFlash('success', 'Seja bem-vindo(a) ' . auth()->user()->name . '!', ' ');
+        return redirect()->route('dashboards.home');
+    }
 
     /**
      * Where to redirect users after login.
@@ -55,9 +63,10 @@ class LoginController extends Controller
      *
      * @return \Illuminate\Http\RedirectResponse user is being logged out and redirected to the login page.
      */
-    public function logout()
+    public function logout(ToastrFactory $flasher)
     {
         Auth::logout();
+        $flasher->addFlash('success', 'Logout realizado com sucesso!', ' ');
         return redirect()->to('/login');
     }
 }

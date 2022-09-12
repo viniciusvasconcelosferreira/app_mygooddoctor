@@ -26,6 +26,8 @@ class DoctorFactory extends Factory
             'phone' => $this->faker->phoneNumber(),
             'mobile_phone' => $this->faker->phoneNumber(),
             'department' => $this->faker->sentence(),
+            'description' => $this->faker->text(1500),
+            'social' => serialize(array($this->faker->unique()->userName(), $this->faker->unique()->userName(), $this->faker->unique()->userName()))
         ];
     }
 }
