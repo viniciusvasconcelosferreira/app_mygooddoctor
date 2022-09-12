@@ -15,6 +15,7 @@ class Patient extends Model
         'rg',
         'phone',
         'mobile_phone',
+        'blood_type'
     ];
 
     public function doctor()

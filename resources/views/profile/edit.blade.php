@@ -2,7 +2,7 @@
 @section('stylesheets')
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/flatpickr/4.6.13/flatpickr.min.css"
           integrity="sha512-MQXduO8IQnJVq1qmySpN87QQkiR1bZHtorbJBD0tzy7/0U9+YIC93QWHeGTEoojMVHWWNkoCp8V6OzVSYrX0oQ=="
-          crossorigin="anonymous" referrerpolicy="no-referrer" />
+          crossorigin="anonymous" referrerpolicy="no-referrer"/>
 @endsection
 @section('content')
     <div class="row mb-5">
@@ -39,7 +39,8 @@
                     <h5>Informações básicas</h5>
                 </div>
                 <div class="card-body pt-0">
-                    <form action="" method="POST">
+                    <form action="{{route('profile.update',encrypt($doctor->crm))}}" method="post"
+                          enctype="multipart/form-data">
                         @csrf
                         @method("PUT")
                         <div class="row">
@@ -47,13 +48,13 @@
                                 <div class="input-group input-group-static">
                                     <label>Nome</label>
                                     <input type="text" class="form-control @error('name') is-invalid @enderror"
-                                           id="name" value="{{$doctor->user->name}}">
+                                           name="name" value="{{$doctor->user->name}}">
                                 </div>
                             </div>
                             <div class="col-3">
                                 <div class="input-group input-group-static">
                                     <label for="gender" class="ms-0">Gênero</label>
-                                    <select class="form-control @error('gender') is-invalid @enderror" id="gender">
+                                    <select class="form-control @error('gender') is-invalid @enderror" name="gender">
                                         <option disabled selected>Selecione uma das opções...</option>
                                         <option value="Male" @if($doctor->gender == 'Male') selected @endif>Homem
                                         </option>
@@ -71,8 +72,8 @@
                                     <input type="text"
                                            class="form-control datepicker @error('birth_date') is-invalid @enderror"
                                            onfocus="focused(this)"
-                                           onfocusout="defocused(this)" id="birth_date"
-                                           value="{{\Carbon\Carbon::parse($doctor->user->profile['birth_date'])->format('d/m/Y')}}">
+                                           onfocusout="defocused(this)" name="birth_date"
+                                           value="{{$doctor->user->profile['birth_date']}}">
                                 </div>
                             </div>
                         </div>
@@ -82,7 +83,7 @@
                                 <div class="input-group input-group-static">
                                     <label>Endereço</label>
                                     <input type="text" class="form-control @error('address') is-invalid @enderror"
-                                           id="address" value="{{$doctor->address}}">
+                                           name="address" value="{{$doctor->address}}">
                                 </div>
                             </div>
                         </div>
@@ -91,14 +92,14 @@
                             <div class="col-6">
                                 <div class="input-group input-group-static">
                                     <label>CPF</label>
-                                    <input type="text" class="form-control @error('cpf') is-invalid @enderror" id="cpf"
+                                    <input type="text" class="form-control @error('cpf') is-invalid @enderror" name="cpf"
                                            value="{{$doctor->cpf}}">
                                 </div>
                             </div>
                             <div class="col-6">
                                 <div class="input-group input-group-static">
                                     <label>RG</label>
-                                    <input type="text" class="form-control @error('rg') is-invalid @enderror" id="rg"
+                                    <input type="text" class="form-control @error('rg') is-invalid @enderror" name="rg"
                                            value="{{$doctor->rg}}">
                                 </div>
                             </div>
@@ -109,21 +110,21 @@
                                 <div class="input-group input-group-static">
                                     <label>Telefone</label>
                                     <input type="text" class="form-control @error('phone') is-invalid @enderror"
-                                           id="phone" value="{{$doctor->phone}}">
+                                           name="phone" value="{{$doctor->phone}}">
                                 </div>
                             </div>
                             <div class="col-4">
                                 <div class="input-group input-group-static">
                                     <label>Celular</label>
                                     <input type="text" class="form-control @error('mobile_phone') is-invalid @enderror"
-                                           id="mobile_phone" value="{{$doctor->mobile_phone}}">
+                                           name="mobile_phone" value="{{$doctor->mobile_phone}}">
                                 </div>
                             </div>
                             <div class="col-4">
                                 <div class="input-group input-group-static">
                                     <label>Email</label>
                                     <input type="text" class="form-control @error('email') is-invalid @enderror"
-                                           id="email" value="{{$doctor->user->email}}">
+                                           name="email" value="{{$doctor->user->email}}">
                                 </div>
                             </div>
                         </div>
@@ -133,7 +134,7 @@
                                 <div class="input-group input-group-static">
                                     <label>CRM</label>
                                     <input type="text" class="form-control @error('crm') is-invalid @enderror"
-                                           value="{{$doctor->crm}}" id="crm">
+                                           value="{{$doctor->crm}}" name="crm">
                                 </div>
                             </div>
                             <div class="col-3">
@@ -141,7 +142,7 @@
                                     <label>Formação</label>
                                     <input type="text" class="form-control @error('education') is-invalid @enderror"
                                            value="{{$doctor->education}}"
-                                           id="education">
+                                           name="education">
                                 </div>
                             </div>
                             <div class="col-3">
@@ -149,14 +150,14 @@
                                     <label>Especialização</label>
                                     <input type="text" class="form-control @error('specialty') is-invalid @enderror"
                                            value="{{$doctor->specialty[0]['name']}}"
-                                           id="specialty">
+                                           name="specialty[name]">
                                 </div>
                             </div>
                             <div class="col-3">
                                 <div class="input-group input-group-static">
                                     <label>Departamento</label>
                                     <input type="text" class="form-control @error('department') is-invalid @enderror"
-                                           id="department" value="{{$doctor->department}}">
+                                           name="department" value="{{$doctor->department}}">
                                 </div>
                             </div>
                         </div>
@@ -167,7 +168,7 @@
                                     <br>
                                     <textarea class="form-control" rows="7"
                                               placeholder="Diga algumas palavras sobre quem você é ou no que está trabalhando."
-                                              spellcheck="false" id="description">{{$doctor->description}}</textarea>
+                                              spellcheck="false" name="description">{{$doctor->description}}</textarea>
                                 </div>
                             </div>
                             <div class="col-6">
@@ -175,21 +176,21 @@
                                     <div class="col-12">
                                         <div class="input-group input-group-static">
                                             <label>Facebook</label>
-                                            <input type="text" class="form-control" id="social_facebook"
+                                            <input type="text" class="form-control" name="social_facebook"
                                                    value="{{unserialize($doctor->social)[0]}}">
                                         </div>
                                     </div>
                                     <div class="col-12">
                                         <div class="input-group input-group-static">
                                             <label>Twitter</label>
-                                            <input type="text" class="form-control" id="social_twitter"
+                                            <input type="text" class="form-control" name="social_twitter"
                                                    value="{{unserialize($doctor->social)[1]}}">
                                         </div>
                                     </div>
                                     <div class="col-12">
                                         <div class="input-group input-group-static">
                                             <label>Instagram</label>
-                                            <input type="text" class="form-control" id="social_instagram"
+                                            <input type="text" class="form-control" name="social_instagram"
                                                    value="{{unserialize($doctor->social)[2]}}">
                                         </div>
                                     </div>
@@ -199,7 +200,7 @@
                         <div class="float-end">
                             <a href="{{route('profile.overview')}}"
                                class="btn bg-gradient-secondary mt-3 mb-0">Voltar</a>
-                            <button type="button" class="btn bg-gradient-primary mt-3 mb-0">Salvar</button>
+                            <button type="submit" class="btn bg-gradient-primary mt-3 mb-0">Salvar</button>
                         </div>
                     </form>
                 </div>
@@ -215,13 +216,13 @@
             integrity="sha512-bf3wMf+N6l2c9+iuGQRhed0jz7NvuWDBnfoibBG3+JuFbsH9tHzg2KEb/bLvi73uLtRNhHa2PIb4B8Odj2P+8A=="
             crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script>
-        $(document).ready(function() {
+        $(document).ready(function () {
             $("#cpf").inputmask("999.999.999-99");
             $("#phone").inputmask("(99) 9999-9999");
             $("#mobile_phone").inputmask("(99) 9 9999-9999");
             $("#crm").inputmask("CRM/aa 999999");
             $(".datepicker").flatpickr({
-                dateFormat: "d/m/Y",
+                // dateFormat: "d/m/Y",
                 locale: "pt"
             });
         });

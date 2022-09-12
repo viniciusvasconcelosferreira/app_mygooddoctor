@@ -22,7 +22,7 @@ class CreatePatientsTable extends Migration
             $table->string('mobile_phone')->nullable();
             $table->string('blood_type');
             $table->string('doctor_crm');
-            $table->foreign('doctor_crm')->references('crm')->on('doctors');
+            $table->foreign('doctor_crm')->references('crm')->on('doctors')->onUpdate('cascade');
             $table->timestamps();
 
         });

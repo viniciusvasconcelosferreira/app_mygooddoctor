@@ -18,7 +18,7 @@ class CreateSpecialtiesTable extends Migration
             $table->string('name');
             $table->text('description')->nullable();
             $table->string('doctor_crm');
-            $table->foreign('doctor_crm')->references('crm')->on('doctors');
+            $table->foreign('doctor_crm')->references('crm')->on('doctors')->onUpdate('cascade');
             $table->timestamps();
         });
     }

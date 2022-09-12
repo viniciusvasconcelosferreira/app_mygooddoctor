@@ -19,9 +19,9 @@ class CreateAppointmentsTable extends Migration
             $table->string('type');
             $table->text('result');
             $table->string('doctor_crm');
-            $table->foreign('doctor_crm')->references('crm')->on('doctors');
+            $table->foreign('doctor_crm')->references('crm')->on('doctors')->onUpdate('cascade');
             $table->unsignedBigInteger('patient_id')->nullable();
-            $table->foreign('patient_id')->references('id')->on('patients');
+            $table->foreign('patient_id')->references('id')->on('patients')->onUpdate('cascade');
             $table->timestamps();
         });
     }
