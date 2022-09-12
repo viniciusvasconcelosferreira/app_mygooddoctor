@@ -34,7 +34,7 @@ class PrescriptionsController extends Controller
      */
     public function create()
     {
-        //
+        return view('dashboards.new-prescription');
     }
 
     /**
