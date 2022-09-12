@@ -96,15 +96,17 @@
                 </div>
             </li>
             <li class="nav-item">
-                <a data-bs-toggle="collapse" href="#applicationsExamples" class="nav-link text-white "
+                <a data-bs-toggle="collapse" href="#applicationsExamples"
+                   class="nav-link text-white @if(request()->is('scheduling/calendar*')) active @endif"
                    aria-controls="applicationsExamples" role="button" aria-expanded="false">
                     <i class="material-icons-round {% if page.brand == 'RTL' %}ms-2{% else %} me-2{% endif %}">apps</i>
                     <span class="nav-link-text ms-2 ps-1">Agendamento</span>
                 </a>
-                <div class="collapse " id="applicationsExamples">
+                <div class="collapse @if(request()->is('scheduling/calendar*')) show @endif" id="applicationsExamples">
                     <ul class="nav ">
-                        <li class="nav-item ">
-                            <a class="nav-link text-white " href="#">
+                        <li class="nav-item @if(request()->is('scheduling/calendar*')) active @endif">
+                            <a class="nav-link text-white @if(request()->is('scheduling/calendar*')) active @endif"
+                               href="{{route('scheduling.calendar')}}">
                                 <span class="sidenav-mini-icon"> CG </span>
                                 <span class="sidenav-normal  ms-2  ps-1"> Calendário Geral </span>
                             </a>
@@ -122,7 +124,7 @@
                             </a>
                         </li>
                         <li class="nav-item ">
-                            <a class="nav-link text-white " href="../../pages/applications/datatables.html">
+                            <a class="nav-link text-white " href="#">
                                 <span class="sidenav-mini-icon"> R </span>
                                 <span class="sidenav-normal  ms-2  ps-1"> Retorno </span>
                             </a>

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Patient;
 use App\Models\Prescriptions;
 use App\Http\Requests\StorePrescriptionsRequest;
 use App\Http\Requests\UpdatePrescriptionsRequest;
@@ -34,7 +35,8 @@ class PrescriptionsController extends Controller
      */
     public function create()
     {
-        //
+        $patients = Patient::all();
+        return view('dashboards.new-prescription', compact('patients'));
     }
 
     /**
