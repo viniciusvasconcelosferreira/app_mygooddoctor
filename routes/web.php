@@ -29,6 +29,7 @@ Route::namespace('App\Http\Controllers')->group(function () {
 
         Route::prefix('profile')->name('profile.')->group(function () {
             Route::get('/overview', 'DoctorController@profile_overview')->name('overview');
+            Route::get('/edit/{doctor}', 'DoctorController@profile_overview_edit')->name('edit');
         });
 
         Route::prefix('scheduling')->name('scheduling.')->group(function () {

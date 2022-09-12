@@ -38,7 +38,7 @@
                                     <h6 class="mb-0">Informação do Perfil</h6>
                                 </div>
                                 <div class="col-md-4 text-end">
-                                    <a href="javascript:;">
+                                    <a href="{{route('profile.edit',encrypt(auth()->user()->profile['crm']))}}">
                                         <i class="fas fa-user-edit text-secondary text-sm" data-bs-toggle="tooltip"
                                            data-bs-placement="top" title="Editar Perfil"></i>
                                     </a>
@@ -50,48 +50,80 @@
                                 {{auth()->user()->profile['description']}}
                             </p>
                             <hr class="horizontal dark my-4">
-                            <ul class="list-group">
-                                <li class="list-group-item border-0 ps-0 pt-0 text-sm"><strong
-                                        class="text-dark">CRM:</strong> &nbsp; {{auth()->user()->profile['crm']}}
-                                </li>
-                                <li class="list-group-item border-0 ps-0 pt-0 text-sm"><strong class="text-dark">Nome
-                                        Completo:</strong> &nbsp; {{auth()->user()->name}}
-                                </li>
-                                <li class="list-group-item border-0 ps-0 text-sm"><strong
-                                        class="text-dark">Telefone:</strong> &nbsp; {{auth()->user()->profile['phone']}}
-                                </li>
-                                @if(auth()->user()->profile['mobile_phone'])
-                                    <li class="list-group-item border-0 ps-0 text-sm"><strong
-                                            class="text-dark">Telefone Celular:</strong>
-                                        &nbsp; {{auth()->user()->profile['mobile_phone']}}
-                                    </li>
-                                @endif
-                                <li class="list-group-item border-0 ps-0 text-sm"><strong
-                                        class="text-dark">Email:</strong> &nbsp; {{auth()->user()->email}}
-                                </li>
-                                <li class="list-group-item border-0 ps-0 text-sm"><strong
-                                        class="text-dark">Endereço:</strong>
-                                    &nbsp; {{auth()->user()->profile['address']}}
-                                </li>
-                                <li class="list-group-item border-0 ps-0 pb-0">
-                                    <strong class="text-dark text-sm">Social:</strong> &nbsp;
-                                    <a class="btn btn-facebook btn-simple mb-0 ps-1 pe-2 py-0"
-                                       href="https://www.facebook.com/{{unserialize(auth()->user()->profile['social'])[0]}}"
-                                       target="_blank">
-                                        <i class="fab fa-facebook fa-lg"></i>
-                                    </a>
-                                    <a class="btn btn-twitter btn-simple mb-0 ps-1 pe-2 py-0"
-                                       href="https://twitter.com/{{unserialize(auth()->user()->profile['social'])[1]}}"
-                                       target="_blank">
-                                        <i class="fab fa-twitter fa-lg"></i>
-                                    </a>
-                                    <a class="btn btn-instagram btn-simple mb-0 ps-1 pe-2 py-0"
-                                       href="https://www.instagram.com/{{unserialize(auth()->user()->profile['social'])[2]}}"
-                                       target="_blank">
-                                        <i class="fab fa-instagram fa-lg"></i>
-                                    </a>
-                                </li>
-                            </ul>
+                            <div class="row">
+                                <div class="col-12 col-md-6 col-xl-4 position-relative">
+                                    <ul class="list-group">
+                                        <li class="list-group-item border-0 ps-0 pt-0 text-sm"><strong
+                                                class="text-dark">CRM:</strong>
+                                            &nbsp; {{auth()->user()->profile['crm']}}
+                                        </li>
+                                        <li class="list-group-item border-0 ps-0 pt-0 text-sm"><strong
+                                                class="text-dark">Nome
+                                                Completo:</strong> &nbsp; {{auth()->user()->name}}
+                                        </li>
+                                        <li class="list-group-item border-0 ps-0 text-sm"><strong
+                                                class="text-dark">Telefone:</strong>
+                                            &nbsp; {{auth()->user()->profile['phone']}}
+                                        </li>
+                                        @if(auth()->user()->profile['mobile_phone'])
+                                            <li class="list-group-item border-0 ps-0 text-sm"><strong
+                                                    class="text-dark">Telefone Celular:</strong>
+                                                &nbsp; {{auth()->user()->profile['mobile_phone']}}
+                                            </li>
+                                        @endif
+                                        <li class="list-group-item border-0 ps-0 text-sm"><strong
+                                                class="text-dark">Email:</strong> &nbsp; {{auth()->user()->email}}
+                                        </li>
+                                        <li class="list-group-item border-0 ps-0 text-sm"><strong
+                                                class="text-dark">Endereço:</strong>
+                                            &nbsp; {{auth()->user()->profile['address']}}
+                                        </li>
+                                    </ul>
+                                </div>
+                                <div class="col-12 col-md-6 col-xl-4 position-relative">
+                                    <ul class="list-group">
+                                        <li class="list-group-item border-0 ps-0 pt-0 text-sm"><strong
+                                                class="text-dark">Gênero:</strong>
+                                            &nbsp; @switch(auth()->user()->profile['gender'])
+                                                @case('Male')
+                                                    Homem
+                                                    @break
+                                                @case('Female')
+                                                    Mulher
+                                                    @break
+                                                @default
+                                                    Não binário
+                                            @endswitch
+                                        </li>
+                                        <li class="list-group-item border-0 ps-0 pt-0 text-sm"><strong
+                                                class="text-dark">Formação:</strong>
+                                            &nbsp; {{auth()->user()->profile['education']}}
+                                        </li>
+                                        <li class="list-group-item border-0 ps-0 text-sm"><strong
+                                                class="text-dark">Data de Nascimento:</strong>
+                                            &nbsp; {{\Carbon\Carbon::parse(auth()->user()->profile['birth_date'])->format('d/m/Y')}}
+                                        </li>
+                                        <li class="list-group-item border-0 ps-0 pb-0">
+                                            <strong class="text-dark text-sm">Social:</strong> &nbsp;
+                                            <a class="btn btn-facebook btn-simple mb-0 ps-1 pe-2 py-0"
+                                               href="https://www.facebook.com/{{unserialize(auth()->user()->profile['social'])[0]}}"
+                                               target="_blank">
+                                                <i class="fab fa-facebook fa-lg"></i>
+                                            </a>
+                                            <a class="btn btn-twitter btn-simple mb-0 ps-1 pe-2 py-0"
+                                               href="https://twitter.com/{{unserialize(auth()->user()->profile['social'])[1]}}"
+                                               target="_blank">
+                                                <i class="fab fa-twitter fa-lg"></i>
+                                            </a>
+                                            <a class="btn btn-instagram btn-simple mb-0 ps-1 pe-2 py-0"
+                                               href="https://www.instagram.com/{{unserialize(auth()->user()->profile['social'])[2]}}"
+                                               target="_blank">
+                                                <i class="fab fa-instagram fa-lg"></i>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>

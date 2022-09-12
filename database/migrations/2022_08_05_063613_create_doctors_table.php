@@ -25,6 +25,7 @@ class CreateDoctorsTable extends Migration
             $table->string('department');
             $table->text('description')->nullable();
             $table->string('social')->nullable();
+            $table->date('birth_date')->nullable();
             $table->timestamps();
         });
     }
