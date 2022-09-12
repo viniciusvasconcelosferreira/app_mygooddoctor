@@ -92,4 +92,10 @@ class PrescriptionsController extends Controller
     {
         //
     }
+
+    public function generate_prescription($prescriptions)
+    {
+        $prescription = Prescriptions::find($prescriptions);
+        return view('dashboards.invoices', compact('prescription'));
+    }
 }

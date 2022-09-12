@@ -63,7 +63,7 @@
                                     </div>
                                 </td>
                                 <td class="text-sm">
-                                    <a href="javascript:;" data-bs-toggle="tooltip"
+                                    <a href="{{route('dashboards.receipt',$prescription->id)}}" data-bs-toggle="tooltip"
                                        data-bs-original-title="Visualizar receita">
                                         <i class="material-icons text-secondary position-relative text-lg">visibility</i>
                                     </a>

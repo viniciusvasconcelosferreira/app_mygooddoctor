@@ -33,6 +33,7 @@ Route::namespace('App\Http\Controllers')->group(function () {
             Route::get('/patients', 'PatientController@index')->name('patients');
 
             Route::get('/prescriptions', 'PrescriptionsController@index')->name('prescriptions');
+            Route::get('/prescriptions/receipt/{prescription}', 'PrescriptionsController@generate_prescription')->name('receipt');
 
         });
 
