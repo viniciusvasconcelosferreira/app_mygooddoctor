@@ -17,7 +17,7 @@
         <ul class="navbar-nav">
             <li class="nav-item mb-2 mt-0">
                 <a data-bs-toggle="collapse" href="#ProfileNav"
-                   class="nav-link text-white @if(request()->is('profile/overview*')) active @endif"
+                   class="nav-link text-white @if(request()->is('profile/*')) active @endif"
                    aria-controls="ProfileNav"
                    role="button" aria-expanded="false">
                     @php $files = new FilesystemIterator('img/doctors'); @endphp
@@ -31,10 +31,10 @@
   overflow: hidden;
   white-space: nowrap;">{{auth()->user()->name}}</span>
                 </a>
-                <div class="collapse @if(request()->is('profile/overview*')) show @endif" id="ProfileNav" style="">
+                <div class="collapse @if(request()->is('profile/*')) show @endif" id="ProfileNav" style="">
                     <ul class="nav ">
-                        <li class="nav-item @if(request()->is('profile/overview*')) active @endif">
-                            <a class="nav-link text-white @if(request()->is('profile/overview*')) active @endif"
+                        <li class="nav-item @if(request()->is('profile/*')) active @endif">
+                            <a class="nav-link text-white @if(request()->is('profile/*')) active @endif"
                                href="{{route('profile.overview')}}">
                                 <span class="sidenav-mini-icon"> MP </span>
                                 <span class="sidenav-normal  ms-3  ps-1"> Meu Perfil </span>

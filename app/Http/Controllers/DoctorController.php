@@ -6,6 +6,7 @@ use App\Models\Doctor;
 use App\Http\Requests\StoreDoctorRequest;
 use App\Http\Requests\UpdateDoctorRequest;
 use App\Models\Patient;
+use App\Models\Specialty;
 use App\Models\User;
 use Illuminate\Support\Facades\DB;
 
@@ -32,6 +33,8 @@ class DoctorController extends Controller
 
         $doctor = Doctor::find($crm);
 
-        return view('profile.edit', compact('doctor'));
+        $specialties = Specialty::all();
+
+        return view('profile.edit', compact('doctor', 'specialties'));
     }
 }

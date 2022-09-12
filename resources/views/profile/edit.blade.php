@@ -1,12 +1,8 @@
 @extends('layouts.front-profile')
 @section('stylesheets')
-    <style>
-        .choices__inner {
-            border: none;
-            background: none;
-            padding: 0;
-        }
-    </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/flatpickr/4.6.13/flatpickr.min.css"
+          integrity="sha512-MQXduO8IQnJVq1qmySpN87QQkiR1bZHtorbJBD0tzy7/0U9+YIC93QWHeGTEoojMVHWWNkoCp8V6OzVSYrX0oQ=="
+          crossorigin="anonymous" referrerpolicy="no-referrer" />
 @endsection
 @section('content')
     <div class="row mb-5">
@@ -40,191 +36,194 @@
             <!-- Card Basic Info -->
             <div class="card mt-4" id="basic-info">
                 <div class="card-header">
-                    <h5>Informação básica</h5>
+                    <h5>Informações básicas</h5>
                 </div>
                 <div class="card-body pt-0">
-                    <div class="row">
-                        <div class="col-12">
-                            <div class="input-group input-group-static">
-                                <label>Nome</label>
-                                <input type="text" class="form-control">
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-sm-4 col-6">
-                            <label class="form-label mt-4 ms-0">Eu sou</label>
-                            <select class="form-control" name="choices-gender" id="choices-gender">
-                                <option value="Male">Homem</option>
-                                <option value="Female">Mulher</option>
-                                <option value="Non binary">Não binário</option>
-                            </select>
-                        </div>
-                        <div class="col-sm-8">
-                            <div class="row">
-                                <div class="col-sm-5 col-5">
-                                    <label class="form-label mt-4 ms-0">Data de Nascimento</label>
-                                    <select class="form-control" name="choices-month" id="choices-month"></select>
-                                </div>
-                                <div class="col-sm-4 col-3">
-                                    <label class="form-label mt-4 ms-0">&nbsp;</label>
-                                    <select class="form-control" name="choices-day" id="choices-day"></select>
-                                </div>
-                                <div class="col-sm-3 col-4">
-                                    <label class="form-label mt-4">&nbsp;</label>
-                                    <select class="form-control" name="choices-year" id="choices-year"></select>
+                    <form action="" method="POST">
+                        @csrf
+                        @method("PUT")
+                        <div class="row">
+                            <div class="col-6">
+                                <div class="input-group input-group-static">
+                                    <label>Nome</label>
+                                    <input type="text" class="form-control @error('name') is-invalid @enderror"
+                                           id="name" value="{{$doctor->user->name}}">
                                 </div>
                             </div>
-                        </div>
-                    </div>
-                    <div class="row mt-4">
-                        <div class="col-6">
-                            <div class="input-group input-group-static">
-                                <label>Email</label>
-                                <input type="email" class="form-control" placeholder="example@email.com">
+                            <div class="col-3">
+                                <div class="input-group input-group-static">
+                                    <label for="gender" class="ms-0">Gênero</label>
+                                    <select class="form-control @error('gender') is-invalid @enderror" id="gender">
+                                        <option disabled selected>Selecione uma das opções...</option>
+                                        <option value="Male" @if($doctor->gender == 'Male') selected @endif>Homem
+                                        </option>
+                                        <option value="Female" @if($doctor->gender == 'Female') selected @endif>Mulher
+                                        </option>
+                                        <option value="Non binary" @if($doctor->gender == 'Non binary') selected @endif>
+                                            Não binário
+                                        </option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-3">
+                                <div class="input-group input-group-static">
+                                    <label>Data de Nascimento</label>
+                                    <input type="text"
+                                           class="form-control datepicker @error('birth_date') is-invalid @enderror"
+                                           onfocus="focused(this)"
+                                           onfocusout="defocused(this)" id="birth_date"
+                                           value="{{\Carbon\Carbon::parse($doctor->user->profile['birth_date'])->format('d/m/Y')}}">
+                                </div>
                             </div>
                         </div>
-                        <div class="col-6">
-                            <div class="input-group input-group-static">
-                                <label>Confirm Email</label>
-                                <input type="email" class="form-control" placeholder="example@email.com">
+                        <br>
+                        <div class="row">
+                            <div class="col-12">
+                                <div class="input-group input-group-static">
+                                    <label>Endereço</label>
+                                    <input type="text" class="form-control @error('address') is-invalid @enderror"
+                                           id="address" value="{{$doctor->address}}">
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="row mt-4">
-                        <div class="col-6">
-                            <div class="input-group input-group-static">
-                                <label>Your location</label>
-                                <input type="text" class="form-control" placeholder="Sydney, A">
+                        <br>
+                        <div class="row">
+                            <div class="col-6">
+                                <div class="input-group input-group-static">
+                                    <label>CPF</label>
+                                    <input type="text" class="form-control @error('cpf') is-invalid @enderror" id="cpf"
+                                           value="{{$doctor->cpf}}">
+                                </div>
+                            </div>
+                            <div class="col-6">
+                                <div class="input-group input-group-static">
+                                    <label>RG</label>
+                                    <input type="text" class="form-control @error('rg') is-invalid @enderror" id="rg"
+                                           value="{{$doctor->rg}}">
+                                </div>
                             </div>
                         </div>
-                        <div class="col-6">
-                            <div class="input-group input-group-static">
-                                <label>Phone Number</label>
-                                <input type="number" class="form-control" placeholder="+40 735 631 620">
+                        <br>
+                        <div class="row">
+                            <div class="col-4">
+                                <div class="input-group input-group-static">
+                                    <label>Telefone</label>
+                                    <input type="text" class="form-control @error('phone') is-invalid @enderror"
+                                           id="phone" value="{{$doctor->phone}}">
+                                </div>
+                            </div>
+                            <div class="col-4">
+                                <div class="input-group input-group-static">
+                                    <label>Celular</label>
+                                    <input type="text" class="form-control @error('mobile_phone') is-invalid @enderror"
+                                           id="mobile_phone" value="{{$doctor->mobile_phone}}">
+                                </div>
+                            </div>
+                            <div class="col-4">
+                                <div class="input-group input-group-static">
+                                    <label>Email</label>
+                                    <input type="text" class="form-control @error('email') is-invalid @enderror"
+                                           id="email" value="{{$doctor->user->email}}">
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-6 align-self-center">
-                            <label class="form-label mt-4 ms-0">Language</label>
-                            <select class="form-control" name="choices-language" id="choices-language">
-                                <option value="English">English</option>
-                                <option value="French">French</option>
-                                <option value="Spanish">Spanish</option>
-                            </select>
+                        <br>
+                        <div class="row">
+                            <div class="col-3">
+                                <div class="input-group input-group-static">
+                                    <label>CRM</label>
+                                    <input type="text" class="form-control @error('crm') is-invalid @enderror"
+                                           value="{{$doctor->crm}}" id="crm">
+                                </div>
+                            </div>
+                            <div class="col-3">
+                                <div class="input-group input-group-static">
+                                    <label>Formação</label>
+                                    <input type="text" class="form-control @error('education') is-invalid @enderror"
+                                           value="{{$doctor->education}}"
+                                           id="education">
+                                </div>
+                            </div>
+                            <div class="col-3">
+                                <div class="input-group input-group-static">
+                                    <label>Especialização</label>
+                                    <input type="text" class="form-control @error('specialty') is-invalid @enderror"
+                                           value="{{$doctor->specialty[0]['name']}}"
+                                           id="specialty">
+                                </div>
+                            </div>
+                            <div class="col-3">
+                                <div class="input-group input-group-static">
+                                    <label>Departamento</label>
+                                    <input type="text" class="form-control @error('department') is-invalid @enderror"
+                                           id="department" value="{{$doctor->department}}">
+                                </div>
+                            </div>
                         </div>
-                        <div class="col-md-6">
-                            <label class="form-label mt-4">Skills</label>
-                            <input class="form-control" id="choices-skills" type="text" value="vuejs, angular, react"
-                                   placeholder="Enter something" />
+                        <br>
+                        <div class="row">
+                            <div class="col-6">
+                                <div class="input-group input-group-dynamic">
+                                    <br>
+                                    <textarea class="form-control" rows="7"
+                                              placeholder="Diga algumas palavras sobre quem você é ou no que está trabalhando."
+                                              spellcheck="false" id="description">{{$doctor->description}}</textarea>
+                                </div>
+                            </div>
+                            <div class="col-6">
+                                <div class="row">
+                                    <div class="col-12">
+                                        <div class="input-group input-group-static">
+                                            <label>Facebook</label>
+                                            <input type="text" class="form-control" id="social_facebook"
+                                                   value="{{unserialize($doctor->social)[0]}}">
+                                        </div>
+                                    </div>
+                                    <div class="col-12">
+                                        <div class="input-group input-group-static">
+                                            <label>Twitter</label>
+                                            <input type="text" class="form-control" id="social_twitter"
+                                                   value="{{unserialize($doctor->social)[1]}}">
+                                        </div>
+                                    </div>
+                                    <div class="col-12">
+                                        <div class="input-group input-group-static">
+                                            <label>Instagram</label>
+                                            <input type="text" class="form-control" id="social_instagram"
+                                                   value="{{unserialize($doctor->social)[2]}}">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
-                    </div>
+                        <div class="float-end">
+                            <a href="{{route('profile.overview')}}"
+                               class="btn bg-gradient-secondary mt-3 mb-0">Voltar</a>
+                            <button type="button" class="btn bg-gradient-primary mt-3 mb-0">Salvar</button>
+                        </div>
+                    </form>
                 </div>
             </div>
         </div>
     </div>
 @endsection
 @section('scripts')
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/flatpickr/4.6.13/flatpickr.min.js"
+            integrity="sha512-K/oyQtMXpxI4+K0W7H25UopjM8pzq0yrVdFdG21Fh5dBe91I40pDd9A4lzNlHPHBIP2cwZuoxaUSX0GJSObvGA=="
+            crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/flatpickr/4.6.13/l10n/pt.min.js"
+            integrity="sha512-bf3wMf+N6l2c9+iuGQRhed0jz7NvuWDBnfoibBG3+JuFbsH9tHzg2KEb/bLvi73uLtRNhHa2PIb4B8Odj2P+8A=="
+            crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script>
-        if (document.getElementById("choices-gender")) {
-            var gender = document.getElementById("choices-gender");
-            const example = new Choices(gender, {
-                itemSelectText: "Pressione para selecionar"
+        $(document).ready(function() {
+            $("#cpf").inputmask("999.999.999-99");
+            $("#phone").inputmask("(99) 9999-9999");
+            $("#mobile_phone").inputmask("(99) 9 9999-9999");
+            $("#crm").inputmask("CRM/aa 999999");
+            $(".datepicker").flatpickr({
+                dateFormat: "d/m/Y",
+                locale: "pt"
             });
-        }
-
-        if (document.getElementById("choices-language")) {
-            var language = document.getElementById("choices-language");
-            const example = new Choices(language, {
-                itemSelectText: "Pressione para selecionar"
-            });
-        }
-
-        if (document.getElementById("choices-skills")) {
-            var skills = document.getElementById("choices-skills");
-            const example = new Choices(skills, {
-                delimiter: ",",
-                editItems: true,
-                maxItemCount: 5,
-                removeItemButton: true,
-                addItems: true
-            });
-        }
-
-        if (document.getElementById("choices-year")) {
-            var year = document.getElementById("choices-year");
-            setTimeout(function() {
-                const example = new Choices(year);
-            }, 1);
-
-            for (y = 1900; y <= 2020; y++) {
-                var optn = document.createElement("OPTION");
-                optn.text = y;
-                optn.value = y;
-
-                if (y == 2020) {
-                    optn.selected = true;
-                }
-
-                year.options.add(optn);
-            }
-        }
-
-        if (document.getElementById("choices-day")) {
-            var day = document.getElementById("choices-day");
-            setTimeout(function() {
-                const example = new Choices(day);
-            }, 1);
-
-
-            for (y = 1; y <= 31; y++) {
-                var optn = document.createElement("OPTION");
-                optn.text = y;
-                optn.value = y;
-
-                if (y == 1) {
-                    optn.selected = true;
-                }
-
-                day.options.add(optn);
-            }
-
-        }
-
-        if (document.getElementById("choices-month")) {
-            var month = document.getElementById("choices-month");
-            setTimeout(function() {
-                const example = new Choices(month, {
-                    itemSelectText: "Pressione para selecionar"
-                });
-            }, 1);
-
-            var d = new Date();
-            var monthArray = new Array();
-            monthArray[0] = "Janeiro";
-            monthArray[1] = "Fevereiro";
-            monthArray[2] = "Março";
-            monthArray[3] = "Abril";
-            monthArray[4] = "Maio";
-            monthArray[5] = "Junho";
-            monthArray[6] = "Julho";
-            monthArray[7] = "Agosto";
-            monthArray[8] = "Setembro";
-            monthArray[9] = "Outubro";
-            monthArray[10] = "Novembro";
-            monthArray[11] = "Dezembro";
-            for (m = 0; m <= 11; m++) {
-                var optn = document.createElement("OPTION");
-                optn.text = monthArray[m];
-                // server side month start from one
-                optn.value = (m + 1);
-                // if june selected
-                if (m == 1) {
-                    optn.selected = true;
-                }
-                month.options.add(optn);
-            }
-        }
+        });
     </script>
 @endsection
