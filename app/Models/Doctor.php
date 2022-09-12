@@ -27,6 +27,9 @@ class Doctor extends Model
         'phone',
         'mobile_phone',
         'department',
+        'description',
+        'social',
+        'birth_date'
     ];
 
     public function specialty()

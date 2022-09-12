@@ -15,6 +15,7 @@ class Patient extends Model
         'rg',
         'phone',
         'mobile_phone',
+        'blood_type'
     ];
 
     public function doctor()
@@ -30,5 +31,10 @@ class Patient extends Model
     public function user()
     {
         return $this->morphOne(User::class, 'profile');
+    }
+
+    public function prescriptions()
+    {
+        return $this->hasMany(Prescriptions::class);
     }
 }

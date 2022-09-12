@@ -25,11 +25,22 @@ Route::namespace('App\Http\Controllers')->group(function () {
             Route::get('/home', function () {
                 return view('dashboards.index');
             })->name('home');
+
+            Route::get('/exams', function () {
+                return view('dashboards.exams');
+            })->name('exams');
+
+            Route::get('/patients', 'PatientController@index')->name('patients');
+
+            Route::get('/prescriptions', 'PrescriptionsController@index')->name('prescriptions');
+            Route::get('/prescriptions/receipt/{prescription}', 'PrescriptionsController@generate_prescription')->name('receipt');
+
         });
 
         Route::prefix('profile')->name('profile.')->group(function () {
             Route::get('/overview', 'DoctorController@profile_overview')->name('overview');
             Route::get('/edit/{doctor}', 'DoctorController@profile_overview_edit')->name('edit');
+            Route::put('/update/{doctor}', 'DoctorController@profile_overview_update')->name('update');
         });
 
         Route::prefix('scheduling')->name('scheduling.')->group(function () {
