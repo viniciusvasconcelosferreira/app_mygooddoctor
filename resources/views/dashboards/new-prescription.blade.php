@@ -1,8 +1,6 @@
 @extends('layouts.front')
 @section('content')
     <div class="col-12 text-center">
-        <h3 class="mt-5">Build Your Profile</h3>
-        <h5 class="font-weight-normal opacity-6">This information will let us know more about you.</h5>
         <div class="multisteps-form mb-5">
             <!--progress bar-->
             <div class="row">
@@ -13,10 +11,10 @@
                                 <div class="multisteps-form__progress">
                                     <button class="multisteps-form__progress-btn js-active" type="button"
                                             title="User Info">
-                                        <span>About</span>
+                                        <span>Dados Gerais</span>
                                     </button>
                                     <button class="multisteps-form__progress-btn" type="button" title="Address">
-                                        <span>Account</span>
+                                        <span>Medicação</span>
                                     </button>
                                     <button class="multisteps-form__progress-btn" type="button" title="Order Info">
                                         <span>Address</span>
@@ -25,102 +23,88 @@
                             </div>
                         </div>
                         <div class="card-body">
-                            <form class="multisteps-form__form">
+                            <form class="multisteps-form__form" method="post">
+                                @csrf
                                 <!--single form panel-->
                                 <div class="multisteps-form__panel js-active" data-animation="FadeIn">
                                     <div class="row text-center mt-4">
                                         <div class="col-10 mx-auto">
-                                            <h5 class="font-weight-normal">Let's start with the basic information</h5>
-                                            <p>Let us know your name and email address. Use an address you don't mind
-                                                other users contacting you at</p>
+                                            <h5 class="font-weight-normal">Dados Gerais</h5>
                                         </div>
                                     </div>
                                     <div class="multisteps-form__content">
                                         <div class="row mt-3">
-                                            <div class="col-12 col-sm-4">
-                                                <div class="avatar avatar-xxl position-relative">
-                                                    <img src="../../assets/img/team-2.jpg" class="border-radius-md"
-                                                         alt="team-2">
-                                                    <a href="javascript:;"
-                                                       class="btn btn-sm btn-icon-only bg-gradient-primary position-absolute bottom-0 end-0 mb-n2 me-n2">
-                                  <span class="material-icons text-xs top-0" data-bs-toggle="tooltip"
-                                        data-bs-placement="top" title="" aria-hidden="true"
-                                        data-bs-original-title="Edit Image" aria-label="Edit Image">
-                                    edit
-                                  </span>
-                                                    </a>
+                                            <div class="col-12 col-sm-12 mt-4 mt-sm-0 text-start">
+                                                <div class="input-group input-group-dynamic mb-4">
+                                                    <label class="form-label">Nome da clinica</label>
+                                                    <input type="text" class="form-control multisteps-form__input"
+                                                           name="clinic_name">
+                                                </div>
+                                                <div class="input-group input-group-dynamic mb-4">
+                                                    <div>
+                                                        <label class="form-label">Nome do Paciente</label>
+                                                        <br>
+                                                        <select
+                                                            class="form-control multisteps-form__input @error('patient_id') is-invalid @enderror"
+                                                            name="patient_id">
+                                                            <option disabled selected>Selecione uma das opções...
+                                                            </option>
+                                                            @foreach($patients as $patient)
+                                                                <option value="{{$patient->id}}">
+                                                                    @if($patient->user)
+                                                                        {{$patient->user->name}}
+                                                                    @else
+                                                                        {{\Faker\Provider\pt_BR\Person::firstNameMale()}} {{\Faker\Provider\pt_BR\Person::lastName()}} {{\Faker\Provider\pt_BR\Person::lastName()}}
+                                                                    @endif
+                                                                </option>
+                                                            @endforeach
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                                <div class="input-group input-group-dynamic">
+                                                    <label class="form-label">Data</label>
+                                                    <input type="text" class="form-control multisteps-form__input"
+                                                           name="date">
                                                 </div>
                                             </div>
-                                            <div class="col-12 col-sm-8 mt-4 mt-sm-0 text-start">
+                                        </div>
+                                        <div class="button-row d-flex mt-4">
+                                            <button class="btn bg-gradient-dark ms-auto mb-0 js-btn-next" type="button"
+                                                    title="Next">Próximo
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!--single form panel-->
+                                <div class="multisteps-form__panel" data-animation="FadeIn">
+                                    <div class="row text-center mt-4">
+                                        <div class="col-10 mx-auto">
+                                            <h5 class="font-weight-normal">Medicação</h5>
+                                        </div>
+                                    </div>
+                                    <div class="multisteps-form__content">
+                                        <div class="row mt-4">
+                                            <div class="col-12 col-sm-12 mt-4 mt-sm-0 text-start">
                                                 <div class="input-group input-group-dynamic mb-4">
-                                                    <label class="form-label">First Name</label>
+                                                    <label class="form-label">Nome da clinica</label>
                                                     <input type="text" class="form-control multisteps-form__input">
                                                 </div>
                                                 <div class="input-group input-group-dynamic mb-4">
-                                                    <label class="form-label">Last Name</label>
+                                                    <label class="form-label">Nome do Paciente</label>
                                                     <input type="text" class="form-control multisteps-form__input">
                                                 </div>
                                                 <div class="input-group input-group-dynamic">
-                                                    <label class="form-label">Email Address</label>
+                                                    <label class="form-label">Data</label>
                                                     <input type="email" class="form-control multisteps-form__input">
                                                 </div>
                                             </div>
                                         </div>
                                         <div class="button-row d-flex mt-4">
-                                            <button class="btn bg-gradient-dark ms-auto mb-0 js-btn-next" type="button"
-                                                    title="Next">Next
-                                            </button>
-                                        </div>
-                                    </div>
-                                </div>
-                                <!--single form panel-->
-                                <div class="multisteps-form__panel" data-animation="FadeIn">
-                                    <div class="row text-center mt-4">
-                                        <div class="col-10 mx-auto">
-                                            <h5 class="font-weight-normal">What are you doing? (checkboxes)</h5>
-                                            <p>Give us more details about you. What do you enjoy doing in your spare
-                                                time?</p>
-                                        </div>
-                                    </div>
-                                    <div class="multisteps-form__content">
-                                        <div class="row mt-4">
-                                            <div class="col-sm-3 ms-auto">
-                                                <input type="checkbox" class="btn-check" id="btncheck1">
-                                                <label class="btn btn-lg btn-outline-primary border-2 px-6 py-5"
-                                                       for="btncheck1">
-                                                    <i class="material-icons">
-                                                        brush
-                                                    </i>
-                                                </label>
-                                                <h6>Design</h6>
-                                            </div>
-                                            <div class="col-sm-3">
-                                                <input type="checkbox" class="btn-check" id="btncheck2">
-                                                <label class="btn btn-lg btn-outline-primary border-2 px-6 py-5"
-                                                       for="btncheck2">
-                                                    <i class="material-icons">
-                                                        integration_instructions
-                                                    </i>
-                                                </label>
-                                                <h6>Code</h6>
-                                            </div>
-                                            <div class="col-sm-3 me-auto">
-                                                <input type="checkbox" class="btn-check" id="btncheck3">
-                                                <label class="btn btn-lg btn-outline-primary border-2 px-6 py-5"
-                                                       for="btncheck3">
-                                                    <i class="material-icons">
-                                                        developer_mode
-                                                    </i>
-                                                </label>
-                                                <h6>Develop</h6>
-                                            </div>
-                                        </div>
-                                        <div class="button-row d-flex mt-4">
                                             <button class="btn btn-outline-dark mb-0 js-btn-prev" type="button"
-                                                    title="Prev">Prev
+                                                    title="Prev">Anterior
                                             </button>
                                             <button class="btn bg-gradient-dark ms-auto mb-0 js-btn-next" type="button"
-                                                    title="Next">Next
+                                                    title="Next">Próximo
                                             </button>
                                         </div>
                                     </div>
@@ -129,9 +113,7 @@
                                 <div class="multisteps-form__panel" data-animation="FadeIn">
                                     <div class="row text-center mt-4">
                                         <div class="col-10 mx-auto">
-                                            <h5 class="font-weight-normal">Are you living in a nice area?</h5>
-                                            <p>One thing I love about the later sunsets is the chance to go for a walk
-                                                through the neighborhood woods before dinner</p>
+                                            <h5 class="font-weight-normal">Observações</h5>
                                         </div>
                                     </div>
                                     <div class="multisteps-form__content">
@@ -172,10 +154,10 @@
                                         <div class="row">
                                             <div class="button-row d-flex mt-4 col-12">
                                                 <button class="btn btn-outline-dark mb-0 js-btn-prev" type="button"
-                                                        title="Prev">Prev
+                                                        title="Prev">Anterior
                                                 </button>
                                                 <button class="btn bg-gradient-dark ms-auto mb-0" type="button"
-                                                        title="Send">Send
+                                                        title="Send">Enviar
                                                 </button>
                                             </div>
                                         </div>

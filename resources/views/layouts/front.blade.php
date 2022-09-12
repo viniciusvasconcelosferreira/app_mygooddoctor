@@ -53,6 +53,8 @@
 <script src="{{asset('js/plugins/world.js')}}"></script>
 <script src="{{asset('js/plugins/sweetalert.min.js')}}"></script>
 <script src="{{asset('js/plugins/datatables.js')}}"></script>
+<script src="{{asset('js/plugins/multistep-form.js')}}"></script>
+<script src="{{asset('js/plugins/choices.min.js')}}"></script>
 <script>
     var win = navigator.platform.indexOf("Win") > -1;
     if (win && document.querySelector("#sidenav-scrollbar")) {
