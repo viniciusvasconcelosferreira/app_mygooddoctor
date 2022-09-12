@@ -61,27 +61,33 @@
             </li>
             <hr class="horizontal light mt-0">
             <li class="nav-item">
-                <a data-bs-toggle="collapse" href="#dashboardsExamples" class="nav-link text-white"
+                <a data-bs-toggle="collapse" href="#dashboardsExamples"
+                   class="nav-link text-white @if(request()->is('dashboards/exams*') or request()->is('dashboards/patients*') or request()->is('dashboards/prescriptions*')) active @endif"
                    aria-controls="dashboardsExamples" role="button" aria-expanded="false">
                     <i class="material-icons-round opacity-10">dashboard</i>
                     <span class="nav-link-text ms-2 ps-1">Dashboards</span>
                 </a>
-                <div class="collapse" id="dashboardsExamples">
+                <div
+                    class="collapse @if(request()->is('dashboards/exams*') or request()->is('dashboards/patients*') or request()->is('dashboards/prescriptions*')) show @endif"
+                    id="dashboardsExamples">
                     <ul class="nav ">
-                        <li class="nav-item">
-                            <a class="nav-link text-white" href="#">
+                        <li class="nav-item @if(request()->is('dashboards/exams*')) active @endif">
+                            <a class="nav-link text-white @if(request()->is('dashboards/exams*')) active @endif"
+                               href="{{route('dashboards.exams')}}">
                                 <span class="sidenav-mini-icon"> E </span>
                                 <span class="sidenav-normal  ms-2  ps-1"> Exames </span>
                             </a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-white" href="#">
+                        <li class="nav-item @if(request()->is('dashboards/patients*')) active @endif">
+                            <a class="nav-link text-white @if(request()->is('dashboards/patients*')) active @endif"
+                               href="{{route('dashboards.patients')}}">
                                 <span class="sidenav-mini-icon"> P </span>
                                 <span class="sidenav-normal  ms-2  ps-1"> Pacientes </span>
                             </a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-white" href="#">
+                        <li class="nav-item @if(request()->is('dashboards/prescriptions*')) active @endif">
+                            <a class="nav-link text-white @if(request()->is('dashboards/prescriptions*')) active @endif"
+                               href="{{route('dashboards.prescriptions')}}">
                                 <span class="sidenav-mini-icon"> R </span>
                                 <span class="sidenav-normal  ms-2  ps-1"> Receitas </span>
                             </a>
