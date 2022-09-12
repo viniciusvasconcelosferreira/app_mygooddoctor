@@ -2,18 +2,17 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Patient;
-use App\Http\Requests\StorePatientRequest;
-use App\Http\Requests\UpdatePatientRequest;
+use App\Models\Prescriptions;
+use App\Http\Requests\StorePrescriptionsRequest;
+use App\Http\Requests\UpdatePrescriptionsRequest;
 
-class PatientController extends Controller
+class PrescriptionsController extends Controller
 {
+    private $prescription;
 
-    private $patient;
-
-    public function __construct(Patient $patient)
+    public function __construct(Prescriptions $prescription)
     {
-        $this->patient = $patient;
+        $this->prescription = $prescription;
     }
 
     /**
@@ -23,9 +22,9 @@ class PatientController extends Controller
      */
     public function index()
     {
-        $patients = $this->patient::all()->sortByDesc('id');
+        $prescriptions = $this->prescription::all()->sortByDesc('id');
 
-        return view('dashboards.patients', compact('patients'));
+        return view('dashboards.prescriptions', compact('prescriptions'));
     }
 
     /**
@@ -41,10 +40,10 @@ class PatientController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param \App\Http\Requests\StorePatientRequest $request
+     * @param \App\Http\Requests\StorePrescriptionsRequest $request
      * @return \Illuminate\Http\Response
      */
-    public function store(StorePatientRequest $request)
+    public function store(StorePrescriptionsRequest $request)
     {
         //
     }
@@ -52,10 +51,10 @@ class PatientController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param \App\Models\Patient $patient
+     * @param \App\Models\Prescriptions $prescriptions
      * @return \Illuminate\Http\Response
      */
-    public function show(Patient $patient)
+    public function show(Prescriptions $prescriptions)
     {
         //
     }
@@ -63,10 +62,10 @@ class PatientController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param \App\Models\Patient $patient
+     * @param \App\Models\Prescriptions $prescriptions
      * @return \Illuminate\Http\Response
      */
-    public function edit(Patient $patient)
+    public function edit(Prescriptions $prescriptions)
     {
         //
     }
@@ -74,11 +73,11 @@ class PatientController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param \App\Http\Requests\UpdatePatientRequest $request
-     * @param \App\Models\Patient $patient
+     * @param \App\Http\Requests\UpdatePrescriptionsRequest $request
+     * @param \App\Models\Prescriptions $prescriptions
      * @return \Illuminate\Http\Response
      */
-    public function update(UpdatePatientRequest $request, Patient $patient)
+    public function update(UpdatePrescriptionsRequest $request, Prescriptions $prescriptions)
     {
         //
     }
@@ -86,10 +85,10 @@ class PatientController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param \App\Models\Patient $patient
+     * @param \App\Models\Prescriptions $prescriptions
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Patient $patient)
+    public function destroy(Prescriptions $prescriptions)
     {
         //
     }

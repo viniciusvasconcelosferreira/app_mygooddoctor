@@ -32,4 +32,9 @@ class Patient extends Model
     {
         return $this->morphOne(User::class, 'profile');
     }
+
+    public function prescriptions()
+    {
+        return $this->hasMany(Prescriptions::class);
+    }
 }

@@ -25,15 +25,15 @@ Route::namespace('App\Http\Controllers')->group(function () {
             Route::get('/home', function () {
                 return view('dashboards.index');
             })->name('home');
+
             Route::get('/exams', function () {
                 return view('dashboards.exams');
             })->name('exams');
-            Route::get('/patients', function () {
-                return view('dashboards.patients');
-            })->name('patients');
-            Route::get('/prescriptions', function () {
-                return view('dashboards.prescriptions');
-            })->name('prescriptions');
+
+            Route::get('/patients', 'PatientController@index')->name('patients');
+
+            Route::get('/prescriptions', 'PrescriptionsController@index')->name('prescriptions');
+
         });
 
         Route::prefix('profile')->name('profile.')->group(function () {

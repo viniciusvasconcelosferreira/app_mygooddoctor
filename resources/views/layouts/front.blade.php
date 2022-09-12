@@ -51,6 +51,7 @@
 <script src="{{asset('js/plugins/chartjs.min.js')}}"></script>
 <script src="{{asset('js/plugins/world.js')}}"></script>
 <script src="{{asset('js/plugins/sweetalert.min.js')}}"></script>
+<script src="{{asset('js/plugins/datatables.js')}}"></script>
 <script>
     var ctx = document.getElementById("chart-bars").getContext("2d");
 
