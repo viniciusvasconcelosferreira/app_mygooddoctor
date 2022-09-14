@@ -24,6 +24,7 @@ class CreatePatientsTable extends Migration
             $table->string('doctor_crm');
             $table->foreign('doctor_crm')->references('crm')->on('doctors')->onUpdate('cascade');
             $table->timestamps();
+            $table->softDeletes();
 
         });
     }

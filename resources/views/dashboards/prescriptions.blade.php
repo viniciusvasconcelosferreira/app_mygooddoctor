@@ -65,7 +65,8 @@
                                     </div>
                                 </td>
                                 <td class="text-sm">
-                                    <a href="{{route('dashboards.prescription.receipt',$prescription->id)}}" data-bs-toggle="tooltip"
+                                    <a href="{{route('dashboards.prescription.receipt',$prescription->id)}}"
+                                       data-bs-toggle="tooltip"
                                        data-bs-original-title="Visualizar receita">
                                         <i class="material-icons text-secondary position-relative text-lg">visibility</i>
                                     </a>
@@ -73,10 +74,15 @@
                                        data-bs-original-title="Editar receita">
                                         <i class="material-icons text-secondary position-relative text-lg">drive_file_rename_outline</i>
                                     </a>
-                                    <a href="javascript:;" data-bs-toggle="tooltip"
-                                       data-bs-original-title="Excluir receita">
-                                        <i class="material-icons text-secondary position-relative text-lg">delete</i>
-                                    </a>
+                                    <form action="{{route('dashboards.prescription.destroy',$prescription->id)}}"
+                                          method="post">
+                                        @csrf
+                                        @method('delete')
+                                        <button type="submit" data-bs-toggle="tooltip"
+                                                data-bs-original-title="Excluir receita">
+                                            <i class="material-icons text-secondary position-relative text-lg">delete</i>
+                                        </button>
+                                    </form>
                                 </td>
                             </tr>
                         @endforeach

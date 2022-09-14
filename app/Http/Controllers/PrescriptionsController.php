@@ -25,7 +25,7 @@ class PrescriptionsController extends Controller
      */
     public function index()
     {
-        $prescriptions = $this->prescription::all()->where('patient_id','!=',null)->sortByDesc('id');
+        $prescriptions = $this->prescription::all()->where('patient_id', '!=', null)->sortByDesc('id');
 
         return view('dashboards.prescriptions', compact('prescriptions'));
     }
@@ -49,7 +49,7 @@ class PrescriptionsController extends Controller
      */
     public function store(Request $request, ToastrFactory $flasher)
     {
-        $prescriptions = $this->prescription::all()->where('patient_id','!=',null)->sortByDesc('id');
+        $prescriptions = $this->prescription::all()->where('patient_id', '!=', null)->sortByDesc('id');
         try {
             $prescription = $this->prescription->create($request->all());
             $flasher->addSuccess('Registro criado com sucesso!', ' ');
@@ -98,11 +98,21 @@ class PrescriptionsController extends Controller
      * Remove the specified resource from storage.
      *
      * @param \App\Models\Prescriptions $prescriptions
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\RedirectResponse
      */
-    public function destroy(Prescriptions $prescriptions)
+    public function destroy(Prescriptions $prescription, ToastrFactory $flasher)
     {
-        //
+        $prescriptions = $this->prescription::all()->where('patient_id', '!=', null)->sortByDesc('id');
+
+        try {
+            $prescription->delete();
+            $flasher->addSuccess('Registro deletado com sucesso!', ' ');
+            return redirect()->route('dashboards.prescriptions', compact('prescriptions'));
+        } catch (\Exception $e) {
+            $flasher->addError($e->getMessage(), ' ');
+            return back();
+        }
+        
     }
 
     public function generate_prescription($prescriptions)

@@ -25,6 +25,7 @@ class CreatePrescriptionsTable extends Migration
             $table->unsignedBigInteger('patient_id')->nullable();
             $table->foreign('patient_id')->references('id')->on('patients')->onUpdate('cascade');
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

@@ -27,6 +27,7 @@ class CreateDoctorsTable extends Migration
             $table->string('social')->nullable();
             $table->date('birth_date')->nullable();
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 
