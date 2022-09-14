@@ -34,6 +34,7 @@ Route::namespace('App\Http\Controllers')->group(function () {
 
             Route::get('/prescriptions', 'PrescriptionsController@index')->name('prescriptions');
             Route::get('/prescriptions/new', 'PrescriptionsController@create')->name('prescription.create');
+            Route::post('/prescriptions/store', 'PrescriptionsController@store')->name('prescription.store');
             Route::get('/prescriptions/receipt/{prescription}', 'PrescriptionsController@generate_prescription')->name('prescription.receipt');
 
         });

@@ -53,7 +53,9 @@
                                     <div class="d-flex align-items-center">
                                         <img src="{{asset('img/doctors/team-2.jpg')}}" class="avatar avatar-xs me-2"
                                              alt="user image">
-                                        <span>@if($prescription->patient->user)
+                                        <span>
+
+                                            @if($prescription->patient->user)
                                                 {{$prescription->patient->user->name}}
                                             @else
                                                 {{\Faker\Provider\pt_BR\Person::firstNameMale()}}

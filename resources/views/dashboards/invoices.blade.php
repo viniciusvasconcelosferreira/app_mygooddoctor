@@ -71,10 +71,14 @@
                             </div>
                             <div class="col-md-6">
                                 <h6 class="text-dark mb-0">
-                                    @if($prescription->patient->user)
-                                        {{str_replace('há','A cada',\Carbon\Carbon::parse($prescription->period)->diffForHumans())}}
+                                    @if(boolval(gettype($prescription->period)) == true)
+                                        {{$prescription->period}}
                                     @else
-                                        {{str_replace('há','A cada',\Carbon\Carbon::parse(\Faker\Provider\DateTime::date())->diffForHumans())}}
+                                        @if($prescription->patient->user)
+                                            {{str_replace('há','A cada',\Carbon\Carbon::parse($prescription->period)->diffForHumans())}}
+                                        @else
+                                            {{str_replace('há','A cada',\Carbon\Carbon::parse(\Faker\Provider\DateTime::date())->diffForHumans())}}
+                                        @endif
                                     @endif
                                 </h6>
                             </div>

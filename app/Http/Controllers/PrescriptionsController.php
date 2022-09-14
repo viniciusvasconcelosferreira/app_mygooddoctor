@@ -6,6 +6,8 @@ use App\Models\Patient;
 use App\Models\Prescriptions;
 use App\Http\Requests\StorePrescriptionsRequest;
 use App\Http\Requests\UpdatePrescriptionsRequest;
+use Flasher\Toastr\Prime\ToastrFactory;
+use Illuminate\Http\Request;
 
 class PrescriptionsController extends Controller
 {
@@ -23,7 +25,7 @@ class PrescriptionsController extends Controller
      */
     public function index()
     {
-        $prescriptions = $this->prescription::all()->sortByDesc('id');
+        $prescriptions = $this->prescription::all()->where('patient_id','!=',null)->sortByDesc('id');
 
         return view('dashboards.prescriptions', compact('prescriptions'));
     }
@@ -31,7 +33,7 @@ class PrescriptionsController extends Controller
     /**
      * Show the form for creating a new resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View|\Illuminate\Http\Response
      */
     public function create()
     {
@@ -43,11 +45,19 @@ class PrescriptionsController extends Controller
      * Store a newly created resource in storage.
      *
      * @param \App\Http\Requests\StorePrescriptionsRequest $request
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\RedirectResponse
      */
-    public function store(StorePrescriptionsRequest $request)
+    public function store(Request $request, ToastrFactory $flasher)
     {
-        //
+        $prescriptions = $this->prescription::all()->where('patient_id','!=',null)->sortByDesc('id');
+        try {
+            $prescription = $this->prescription->create($request->all());
+            $flasher->addSuccess('Registro criado com sucesso!', ' ');
+            return redirect()->route('dashboards.prescriptions', compact('prescriptions'));
+        } catch (\Exception $e) {
+            $flasher->addError($e->getMessage(), ' ');
+            return back();
+        }
     }
 
     /**

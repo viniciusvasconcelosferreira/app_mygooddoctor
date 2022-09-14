@@ -17,6 +17,7 @@ class Prescriptions extends Model
         'way_use',
         'observation',
         'date',
+        'patient_id'
     ];
 
     public function patient()
