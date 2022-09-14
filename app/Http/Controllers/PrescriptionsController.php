@@ -112,7 +112,7 @@ class PrescriptionsController extends Controller
             $flasher->addError($e->getMessage(), ' ');
             return back();
         }
-        
+
     }
 
     public function generate_prescription($prescriptions)

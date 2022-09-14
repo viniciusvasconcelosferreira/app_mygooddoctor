@@ -74,15 +74,17 @@
                                        data-bs-original-title="Editar receita">
                                         <i class="material-icons text-secondary position-relative text-lg">drive_file_rename_outline</i>
                                     </a>
-                                    <form action="{{route('dashboards.prescription.destroy',$prescription->id)}}"
-                                          method="post">
-                                        @csrf
-                                        @method('delete')
-                                        <button type="submit" data-bs-toggle="tooltip"
-                                                data-bs-original-title="Excluir receita">
-                                            <i class="material-icons text-secondary position-relative text-lg">delete</i>
-                                        </button>
-                                    </form>
+                                    <a href="{{route('dashboards.prescription.destroy',$prescription->id)}}"
+                                       onclick="event.preventDefault(); document.getElementById('delete-prescription').submit();"
+                                       data-bs-toggle="tooltip" data-bs-original-title="Delete prescription">
+                                        <i class="material-icons text-secondary position-relative text-lg">delete</i>
+                                        <form id="delete-prescription"
+                                              action="{{route('dashboards.prescription.destroy',$prescription->id)}}"
+                                              method="post">
+                                            @csrf
+                                            @method('delete')
+                                        </form>
+                                    </a>
                                 </td>
                             </tr>
                         @endforeach
